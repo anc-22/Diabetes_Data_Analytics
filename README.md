@@ -2,12 +2,12 @@
 Project Scope: An analysis of factors correlated with diabetes risk, along with predictive and prescriptive models to identify individuals who are at high risk of developing diabetes
 
 
-Business Question
+Business Question:
 We aim to explore the relationship between lifestyle choices, physical health indicators, and the risk of diabetes. In particular, we will analyze factors such as physical activity, smoking, alcohol consumption, BMI, and other health indicators correlate with diabetes risk. Beside that, we will consider building a predictive model to identify individuals who are at high risk of developing diabetes based on these health indicators.
 
 Diabetes is a significant public health concern, and early detection of risk factors can help preventative healthcare initiatives. Therefore, we hope that our findings could help public health organizations and medical professionals to reduce diabetes risk.
 
-Data Source
+Data Source:
 We will be using the Diabetes 012 Health Indicators BRFSS 2015 dataset which is publicly available and was sourced from a reliable health survey.
 
 The dataset provides the following factors:
@@ -20,7 +20,7 @@ The dataset provides the following factors:
 The link to the dataset:
 https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators
 
-Data Quality Concerns
+Data Quality Concerns:
  
 The CDC Diabetes Health Indicators Dataset is a structured and publicly available dataset that includes 253,680 instances and 21 features covering demographic, lifestyle, and health-related factors. While this dataset is sourced from a reliable public health survey, there are still some potential data quality concerns that must be considered:
 1. Categorical vs. Numerical Data Handling
@@ -52,23 +52,23 @@ Solution:
 ·	Detect outliers using boxplots and z-score analysis.
 ·	Transform data if necessary to improve model performance.
 
-Methods
+Methods:
 To analyze the relationship between lifestyle choices, physical health indicators, and diabetes risk, we will follow a structured analytical approach, including data preprocessing, exploratory data analysis (EDA), feature selection, and predictive modeling
-1, Data preprocessing
+1, Data preprocessing:
 -	Data cleaning: Address inconsistencies, duplicates and outliers using statistical techniques
 -	Data transformation: Convert categorical variables into numerical representations and normalize continuous variables if necessary
-2, Exploratory Data Analysis (EDA)
+2, Exploratory Data Analysis (EDA):
 -	Perform descriptive statistics and visualizations to understand feature distributions and relationships
 -	Identify correlations between health indicators and diabetes diagnosis
-3, Feature Selection
+3, Feature Selection:
 -	Utilize correlation analysis, mutual information, and statistical tests to identify the most relevant predictors
 -	Apply dimensionality reduction techniques if needed to enhance model efficiency
-4, Predictive Modeling
+4, Predictive Modeling:
 -	Train machine learning models, such as logistic regression, decision trees, random forests, and neural networks, to predict diabetes risk
 -	Use cross-validation to assess model performance and prevent overfitting
 -	Evaluate models using accuracy, precision, recall, and F1-score metric
 
-Challenges
+Challenges:
 Since our dataset is derived from the Behavioral Risk Factor Surveillance System (BRFSS) health-related telephone surveys, it may contain inconsistencies that require thorough data cleaning before performing any analysis or building predictive models. Additionally, with the large number of features in the dataset (including BMI, activity levels, and diet preferences), we will need to conduct comprehensive feature selection to identify the most relevant predictors for diabetes forecasting. Furthermore, it is important to address potential multicollinearity, as several features may exhibit similar correlations with prediabetic and diabetic diagnoses, which could affect the accuracy and interpretability of our models.
 
 Team member contributions:
