@@ -1,82 +1,183 @@
-# Diabetes_Data_Analytics
-Project Scope: An analysis of factors correlated with diabetes risk, along with predictive and prescriptive models to identify individuals who are at high risk of developing diabetes
+# Diabetes Risk Prediction Model
 
+## 🩺 Project Overview
 
-Business Question:
-We aim to explore the relationship between lifestyle choices, physical health indicators, and the risk of diabetes. In particular, we will analyze factors such as physical activity, smoking, alcohol consumption, BMI, and other health indicators correlate with diabetes risk. Beside that, we will consider building a predictive model to identify individuals who are at high risk of developing diabetes based on these health indicators.
+This project develops a comprehensive machine learning solution for predicting diabetes risk using the CDC Diabetes Health Indicators Dataset. By analyzing lifestyle choices, physical health indicators, and demographic factors, we aim to identify individuals at high risk of developing diabetes to enable early intervention and preventive healthcare initiatives.
 
-Diabetes is a significant public health concern, and early detection of risk factors can help preventative healthcare initiatives. Therefore, we hope that our findings could help public health organizations and medical professionals to reduce diabetes risk.
+## 🎯 Business Question
 
-Data Source:
-We will be using the Diabetes 012 Health Indicators BRFSS 2015 dataset which is publicly available and was sourced from a reliable health survey.
+**How do lifestyle choices and physical health indicators correlate with diabetes risk?**
 
-The dataset provides the following factors:
-•	Demographic variables (age, gender, race)
-•	Physical health indicators (BMI, general health rating, physical activity levels)
-•	Lifestyle factors (smoking, alcohol consumption, sleep patterns)
-•	Pre-existing conditions (high blood pressure, cholesterol levels)
-•	Diabetes diagnosis (target variable) 
+Our analysis explores the relationships between various health factors and diabetes diagnosis, building predictive models to identify at-risk individuals before symptoms develop.
 
-The link to the dataset:
-https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators
+## 📊 Dataset Information
 
-Data Quality Concerns:
- 
-The CDC Diabetes Health Indicators Dataset is a structured and publicly available dataset that includes 253,680 instances and 21 features covering demographic, lifestyle, and health-related factors. While this dataset is sourced from a reliable public health survey, there are still some potential data quality concerns that must be considered:
-1. Categorical vs. Numerical Data Handling
-The dataset includes a mix of categorical (e.g. Smoker, PhysActivity, Sex) and numerical (e.g. BMI, Mental Health Days) features.
-Potential Issue: Some machine learning models perform better with numerical data, meaning categorical variables need to be encoded.
-Solution:
-·	Convert binary categorical features using label encoding (e.g. 0 = No, 1 = Yes).
-·	Convert ordinal categorical variables (e.g. Education Level, Income, General Health Rating) to preserve ranking.
-2. Class Imbalance in Diabetes Labels
-The dataset classifies individuals into three categories: Healthy, Pre-diabetes, Diabetes
-Potential Issue: There may be significantly fewer Pre-diabetes or Diabetes cases compared to Healthy individuals, leading to imbalanced classes, which can affect model accuracy.
-Solution:
-·	Use class-weight adjustments in models to prevent bias toward the majority class.
-3. Survey Bias & Self-Reported Data
-This dataset is based on self-reported survey responses for lifestyle habits (Smoking, Alcohol Consumption, Physical Activity).
-Potential Issue: Responses may not be fully accurate due to recall bias or social desirability bias (people may underreport unhealthy behaviors).
-Solution:
-·	Acknowledge this as a limitation in our analysis.
-·	Cross-reference with related health variables (e.g. BMI, blood pressure) to validate responses 
-4. Bucketing of Continuous Variables (Age, Income)
-The dataset buckets Age and Income into groups rather than providing continuous values.
-Potential Issue: This reduces granularity and may limit the ability to detect subtle trends in different age or income levels.
-Solution:
-·	We can consider re-grouping categories into broader or more meaningful segments for analysis.
-5. Outliers in BMI and Mental Health Indicators
-Variables such as BMI, Mental Health Days, and Physical Health Days could contain extreme values.
-Potential Issue: Outliers can skew regression and classification models.
-Solution:
-·	Detect outliers using boxplots and z-score analysis.
-·	Transform data if necessary to improve model performance.
+### Source
+- **Dataset**: CDC Diabetes 012 Health Indicators BRFSS 2015
+- **Source**: [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators)
+- **Size**: 253,680 instances with 21 features
+- **Type**: Behavioral Risk Factor Surveillance System (BRFSS) telephone survey data
 
-Methods:
-To analyze the relationship between lifestyle choices, physical health indicators, and diabetes risk, we will follow a structured analytical approach, including data preprocessing, exploratory data analysis (EDA), feature selection, and predictive modeling
-1, Data preprocessing:
--	Data cleaning: Address inconsistencies, duplicates and outliers using statistical techniques
--	Data transformation: Convert categorical variables into numerical representations and normalize continuous variables if necessary
-2, Exploratory Data Analysis (EDA):
--	Perform descriptive statistics and visualizations to understand feature distributions and relationships
--	Identify correlations between health indicators and diabetes diagnosis
-3, Feature Selection:
--	Utilize correlation analysis, mutual information, and statistical tests to identify the most relevant predictors
--	Apply dimensionality reduction techniques if needed to enhance model efficiency
-4, Predictive Modeling:
--	Train machine learning models, such as logistic regression, decision trees, random forests, and neural networks, to predict diabetes risk
--	Use cross-validation to assess model performance and prevent overfitting
--	Evaluate models using accuracy, precision, recall, and F1-score metric
+### Key Features
 
-Challenges:
-Since our dataset is derived from the Behavioral Risk Factor Surveillance System (BRFSS) health-related telephone surveys, it may contain inconsistencies that require thorough data cleaning before performing any analysis or building predictive models. Additionally, with the large number of features in the dataset (including BMI, activity levels, and diet preferences), we will need to conduct comprehensive feature selection to identify the most relevant predictors for diabetes forecasting. Furthermore, it is important to address potential multicollinearity, as several features may exhibit similar correlations with prediabetic and diabetic diagnoses, which could affect the accuracy and interpretability of our models.
+| Category | Variables |
+|----------|-----------|
+| **Demographics** | Age, Gender, Race, Education, Income |
+| **Health Indicators** | BMI, General Health Rating, Physical/Mental Health Days |
+| **Lifestyle Factors** | Smoking, Alcohol Consumption, Physical Activity, Diet |
+| **Pre-existing Conditions** | High Blood Pressure, High Cholesterol, Heart Disease, Stroke |
+| **Healthcare Access** | Insurance Coverage, Doctor Visits, Healthcare Cost |
+| **Target Variable** | Diabetes Diagnosis (0: No Diabetes, 1: Pre-diabetes/Diabetes) |
 
-Team member contributions:
+## 🔧 Methodology
 
-•	Quan Pham – Exploratory Data Analysis, Data Wrangling, Data Modeling/Machine Learning, Presenter.
+### 1. Data Preprocessing & Quality Assessment
 
-•	Thi Nguyet Anh Che (Andrea) – Project Coordination, Data Wrangling, Data Visualization, Exploratory Data Analysis, Data Modeling/Machine Learning, Presenter.
+#### Data Cleaning Steps:
+- **Missing Values**: Dataset contained no missing values
+- **Duplicates**: No duplicate records found
+- **Data Types**: Verified all features had appropriate data types
+- **Class Imbalance**: Addressed significant imbalance (84.3% No Diabetes vs 15.7% Diabetes)
 
-•	Kaveh Jalilian – Exploratory Data Analysis, Data Wrangling, Data Visualization, Data Modeling/Machine Learning, Presenter.
+#### Key Data Quality Considerations:
+- Self-reported survey data (potential recall and social desirability bias)
+- Bucketed continuous variables (Age, Income) reducing granularity
+- Mix of categorical and numerical features requiring appropriate encoding
 
-•	Yi-Fang Chung – Reporting, Note Collection, PowerPoint Design, Data Visualization, Data Modeling/Machine Learning, Presenter.
+### 2. Exploratory Data Analysis (EDA)
+
+#### Key Statistical Findings:
+- **BMI Distribution**: Mean 28.38 (overweight category), heavily right-skewed
+- **Age Distribution**: Broad distribution across all age categories
+- **Mental/Physical Health Days**: Highly skewed with most reporting 0 days
+
+#### Correlation Analysis Highlights:
+- Strongest correlations with diabetes: High BP (0.27), High Cholesterol (0.30), BMI (0.22)
+- Negative correlation with physical activity (-0.12)
+- Age shows strong positive correlation (0.34)
+
+### 3. Feature Engineering & Selection
+
+Using Sequential Feature Selection (SFS), we identified 17 most informative features:
+- Health indicators: HighBP, HighChol, CholCheck, BMI
+- Lifestyle: Smoker, HeartDiseaseorAttack, Fruits, Veggies, HvyAlcoholConsump
+- Healthcare: AnyHealthcare, GenHlth, MentHlth, DiffWalk
+- Demographics: Sex, Age, Education, Income
+
+### 4. Predictive Modeling
+
+#### Models Tested:
+1. **Logistic Regression**
+2. **Decision Tree**
+3. **Random Forest**
+4. **XGBoost**
+
+#### Class Imbalance Handling:
+- **Undersampling**: Randomly reducing majority class
+- **SMOTE**: Synthetic Minority Over-sampling Technique
+
+#### Best Model Performance:
+**Logistic Regression with Undersampling + Forward Feature Selection**
+- **F1-Score**: 0.746
+- **Accuracy**: 74.1%
+- **Precision**: 72.9%
+- **Recall**: 76.4%
+
+The model prioritizes slightly higher false positives over false negatives, which is preferable in healthcare screening to ensure at-risk individuals receive further testing.
+
+### 5. Prescriptive Modeling
+
+Based on predicted risk levels, the system provides personalized recommendations:
+
+**Low Risk (0-33%)**:
+- Maintain healthy lifestyle
+- Regular check-ups
+- Monitor weight
+
+**Medium Risk (34-66%)**:
+- Increase physical activity
+- Dietary modifications
+- A1C screening recommendation
+
+**High Risk (67-100%)**:
+- Immediate medical consultation
+- Comprehensive metabolic panel
+- Lifestyle intervention program enrollment
+
+## 📈 Key Insights
+
+### 1. Top Health & Lifestyle Risk Factors
+- **Physical Health**: High blood pressure (25% increased risk), high cholesterol (25% increased risk)
+- **BMI Impact**: Obesity shows highest diabetes prevalence (26% vs 8% in normal weight)
+- **Lifestyle**: Physical inactivity and poor diet significantly correlate with diabetes risk
+
+### 2. Social Determinants of Health
+- **Education**: Lower education levels show 40%+ diabetes prevalence
+- **Income**: Inverse relationship - lower income correlates with higher diabetes rates
+- **Healthcare Access**: Those without insurance show 16% higher diabetes rates
+
+### 3. Model Performance Limitations
+- Despite various techniques, F1-score plateaus around 0.75
+- Survey bias and self-reporting limitations affect model accuracy
+- Feature informativeness suggests need for clinical biomarkers for better prediction
+
+## 🛠️ Technical Requirements
+
+### Dependencies
+```python
+pandas>=1.3.0
+numpy>=1.21.0
+scikit-learn>=0.24.0
+xgboost>=1.4.0
+imbalanced-learn>=0.8.0
+matplotlib>=3.4.0
+seaborn>=0.11.0
+scipy>=1.7.0
+```
+
+## 📊 Results & Evaluation
+
+### Model Comparison
+
+| Model | Accuracy | Precision | Recall | F1-Score |
+|-------|----------|-----------|---------|----------|
+| Logistic Regression (Undersample) | 73.96% | 74.01% | 73.96% | **73.95%** |
+| Random Forest (Undersample) | 73.43% | 73.57% | 73.44% | 73.40% |
+| XGBoost (SMOTE) | 71.26% | 61.43% | 69.30% | 61.51% |
+| **Best Model (LR + SFS)** | **74.08%** | **72.94%** | **76.37%** | **74.62%** |
+
+### Confusion Matrix (Best Model)
+```
+              Predicted
+              No    Yes
+Actual No   8621  3399
+       Yes  2848  9119
+```
+
+## 🤝 Contributors
+
+- **Quan Pham** - Exploratory Data Analysis, Data Wrangling, Machine Learning
+- **Thi Nguyet Anh Che (Andrea)** - Project Coordination, Data Visualization, Machine Learning
+- **Kaveh Jalilian** - Exploratory Data Analysis, Data Wrangling, Machine Learning
+- **Yi-Fang Chung** - Reporting, Documentation, Data Visualization, Machine Learning
+
+## 📚 References
+
+1. CDC Diabetes Health Indicators Dataset - UCI Machine Learning Repository
+2. American Diabetes Association - Standards of Medical Care in Diabetes
+3. National Library of Medicine - Diabetes Prevention Studies
+4. CDC - National Diabetes Statistics Report
+
+## 🔮 Future Enhancements
+
+1. **Clinical Biomarkers Integration**: Incorporate HbA1c, fasting glucose levels
+2. **Longitudinal Analysis**: Track patient progression over time
+3. **Deep Learning Models**: Explore neural networks for complex pattern detection
+4. **Mobile Application**: Develop user-friendly risk assessment tool
+5. **Real-time Monitoring**: Integrate with wearable health devices
+
+## 📄 License
+
+This project is developed for educational and research purposes. Please refer to the UCI Machine Learning Repository license for dataset usage terms.
+
+---
